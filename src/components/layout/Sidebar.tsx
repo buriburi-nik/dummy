@@ -44,21 +44,21 @@ const socialLinks = [
     id: "github",
     label: "GitHub",
     icon: Github,
-    href: "https://github.com",
+    href: "https://github.com/priyamaity",
     external: true,
   },
   {
     id: "linkedin",
     label: "LinkedIn",
     icon: Linkedin,
-    href: "https://linkedin.com",
+    href: "https://linkedin.com/in/priya-maity",
     external: true,
   },
   {
     id: "twitter",
     label: "Twitter",
     icon: Twitter,
-    href: "https://twitter.com",
+    href: "https://twitter.com/priyamaity",
     external: true,
   },
 ];
@@ -66,11 +66,13 @@ const socialLinks = [
 interface SidebarProps {
   collapsed?: boolean;
   onToggle?: () => void;
+  isMobile?: boolean;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   collapsed = false,
   onToggle,
+  isMobile = false,
 }) => {
   const { theme, setTheme, actualTheme } = useTheme();
   const location = useLocation();
@@ -89,6 +91,78 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   const ThemeIcon = themeIcons[theme];
 
+  // Mobile horizontal sidebar
+  if (isMobile) {
+    return (
+      <motion.aside
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 h-20 w-full z-50"
+      >
+        <div className="h-full mx-4 mt-4 flex flex-row justify-between items-center rounded-xl bg-slate-800/95 border border-slate-700 px-6 py-3 shadow-2xl">
+          {/* Logo */}
+          <div className="flex items-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
+              <div className="w-full h-full rounded-md bg-slate-800 flex items-center justify-center">
+                <Code size={16} className="text-accent" />
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <nav className="flex-1 flex justify-center">
+            <div className="flex space-x-1">
+              {navigation.map((item, index) => {
+                const Icon = item.icon;
+                const active = isActive(item.href);
+
+                return (
+                  <Link
+                    key={item.id}
+                    to={item.href}
+                    className={cn(
+                      "relative flex items-center justify-center p-2 rounded-lg transition-all duration-200",
+                      active
+                        ? "bg-accent text-white"
+                        : "bg-white/10 hover:bg-white/20 text-white",
+                    )}
+                  >
+                    <Icon size={20} className="text-white" />
+                    {active && (
+                      <motion.div
+                        layoutId="activeMobileIndicator"
+                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          </nav>
+
+          {/* Theme Toggle */}
+          <div className="flex items-center">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() =>
+                setTheme(actualTheme === "light" ? "dark" : "light")
+              }
+              className="p-2 w-8 h-8 rounded-lg text-white hover:text-white hover:bg-white/20 transition-colors duration-200"
+            >
+              <ThemeIcon size={16} className="text-white" />
+            </Button>
+          </div>
+        </div>
+      </motion.aside>
+    );
+  }
+
+  // Desktop vertical sidebar
   return (
     <motion.aside
       initial={{ x: -100, opacity: 0 }}
@@ -148,10 +222,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </div>
                   <div>
                     <h1 className="font-display font-bold text-lg gradient-text">
-                      Aman Kumar
+                      Priya Maity
                     </h1>
                     <p className="text-xs text-sidebar-foreground/70">
-                      Frontend Dev
+                      Full-Stack Dev
                     </p>
                   </div>
                 </motion.div>
@@ -187,8 +261,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Navigation */}
           <nav
             className={cn(
-              "space-y-2",
-              collapsed && "space-y-2 flex flex-col items-center",
+              "space-y-3 px-2",
+              collapsed && "space-y-3 flex flex-col items-center px-0",
             )}
           >
             {navigation.map((item, index) => {
@@ -209,21 +283,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <Link
                     to={item.href}
                     className={cn(
-                      "group relative flex items-center justify-center transition-all duration-200",
+                      "group relative flex items-center transition-all duration-200",
                       collapsed
-                        ? "p-2 rounded-lg w-10 h-10 mx-auto bg-white/10 hover:bg-white/20"
+                        ? "p-2 rounded-lg w-10 h-10 mx-auto bg-white/10 hover:bg-white/20 justify-center"
                         : "space-x-3 px-3 py-3 rounded-xl hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground",
                       active &&
                         (collapsed
                           ? "bg-accent text-white"
-                          : "bg-accent text-accent-foreground shadow-lg"),
+                          : "bg-accent text-white shadow-lg"),
                     )}
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <Icon
                       size={collapsed ? 18 : 20}
-                      className="text-white opacity-90 hover:opacity-100 transition-opacity duration-200"
+                      className={cn(
+                        "transition-opacity duration-200",
+                        active
+                          ? "text-white opacity-100"
+                          : "text-white opacity-90 hover:opacity-100",
+                      )}
                     />
 
                     <AnimatePresence mode="wait">
@@ -235,7 +314,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           transition={{ duration: 0.2 }}
                           className={cn(
                             "font-medium text-sm transition-colors duration-200",
-                            active && "text-accent",
+                            active ? "text-white" : "text-sidebar-foreground",
                           )}
                         >
                           {item.label}

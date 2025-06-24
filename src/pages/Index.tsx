@@ -3,7 +3,7 @@ import { Projects } from "@/components/sections/Projects";
 
 const Index = () => {
   return (
-    <div className="space-y-0">
+    <div className="space-y-16">
       <Hero />
       <Projects />
     </div>

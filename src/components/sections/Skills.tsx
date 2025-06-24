@@ -26,41 +26,57 @@ interface Skill {
 
 const skillCategories = [
   { id: "all", label: "All Skills", icon: Globe },
-  { id: "frontend", label: "Frontend", icon: Code },
+  { id: "frontend", label: "Full-Stack", icon: Code },
   { id: "styling", label: "Styling", icon: Palette },
   { id: "tools", label: "Tools", icon: Zap },
-  { id: "mobile", label: "Mobile", icon: Smartphone },
+  { id: "mobile", label: "Problem Solving", icon: Smartphone },
 ];
 
 const skills: Skill[] = [
   // Frontend Technologies
   {
-    name: "JavaScript",
-    level: 90,
+    name: "JavaScript (ES6+)",
+    level: 85,
     category: "frontend",
-    experience: "2+ years",
-    projects: 6,
+    experience: "1+ years",
+    projects: 4,
   },
   {
     name: "React.js",
-    level: 85,
+    level: 90,
     category: "frontend",
-    experience: "2+ years",
-    projects: 5,
+    experience: "1+ years",
+    projects: 4,
   },
   {
     name: "HTML5",
     level: 95,
     category: "frontend",
-    experience: "3+ years",
-    projects: 6,
+    experience: "2+ years",
+    projects: 4,
   },
   {
-    name: "TypeScript",
+    name: "Node.js",
     level: 80,
     category: "frontend",
     experience: "1+ years",
-    projects: 3,
+    projects: 2,
+  },
+
+  // Backend & Database
+  {
+    name: "Express.js",
+    level: 75,
+    category: "frontend",
+    experience: "1+ years",
+    projects: 2,
+  },
+  {
+    name: "MongoDB",
+    level: 80,
+    category: "frontend",
+    experience: "1+ years",
+    projects: 2,
   },
 
   // Styling & Design
@@ -68,29 +84,22 @@ const skills: Skill[] = [
     name: "CSS3",
     level: 90,
     category: "styling",
-    experience: "3+ years",
-    projects: 6,
+    experience: "2+ years",
+    projects: 4,
   },
   {
     name: "Tailwind CSS",
     level: 85,
     category: "styling",
     experience: "1+ years",
-    projects: 4,
+    projects: 2,
   },
   {
     name: "Responsive Design",
     level: 88,
     category: "styling",
-    experience: "2+ years",
-    projects: 6,
-  },
-  {
-    name: "Figma",
-    level: 75,
-    category: "styling",
     experience: "1+ years",
-    projects: 3,
+    projects: 4,
   },
 
   // Tools & Technologies
@@ -98,80 +107,64 @@ const skills: Skill[] = [
     name: "Git & GitHub",
     level: 85,
     category: "tools",
-    experience: "2+ years",
-    projects: 6,
+    experience: "1+ years",
+    projects: 4,
   },
   {
-    name: "VS Code",
-    level: 90,
-    category: "tools",
-    experience: "3+ years",
-    projects: 6,
-  },
-  {
-    name: "npm/yarn",
+    name: "Firebase",
     level: 80,
     category: "tools",
-    experience: "2+ years",
-    projects: 5,
+    experience: "1+ years",
+    projects: 2,
   },
   {
-    name: "Webpack/Vite",
-    level: 70,
+    name: "Postman",
+    level: 75,
+    category: "tools",
+    experience: "1+ years",
+    projects: 2,
+  },
+  {
+    name: "RESTful APIs",
+    level: 80,
     category: "tools",
     experience: "1+ years",
     projects: 3,
   },
 
-  // Backend & APIs
+  // Problem Solving
   {
-    name: "Node.js",
-    level: 75,
-    category: "frontend",
+    name: "Data Structures",
+    level: 85,
+    category: "mobile",
     experience: "1+ years",
-    projects: 2,
+    projects: 50,
   },
   {
-    name: "REST APIs",
+    name: "Algorithms",
     level: 80,
-    category: "frontend",
-    experience: "2+ years",
-    projects: 4,
-  },
-
-  // Mobile
-  {
-    name: "Android Development",
-    level: 70,
     category: "mobile",
     experience: "1+ years",
-    projects: 1,
-  },
-  {
-    name: "Firebase",
-    level: 75,
-    category: "mobile",
-    experience: "1+ years",
-    projects: 1,
+    projects: 50,
   },
 ];
 
 const certifications = [
   {
-    title: "React.js Fundamentals",
-    issuer: "Online Course",
-    year: "2023",
+    title: "Full Stack Development Program",
+    issuer: "Geekster",
+    year: "2024",
     icon: Award,
   },
   {
-    title: "JavaScript Advanced Concepts",
-    issuer: "Self-Learning",
-    year: "2022",
+    title: "Front-End Software Engineering Job Simulation",
+    issuer: "Skyscanner",
+    year: "2025",
     icon: Star,
   },
   {
-    title: "Frontend Development",
-    issuer: "NIT Kurukshetra",
+    title: "M.Sc. in Mathematics",
+    issuer: "Shri Shivaji Education Society Science College",
     year: "2024",
     icon: TrendingUp,
   },

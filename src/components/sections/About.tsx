@@ -16,34 +16,34 @@ import { Badge } from "@/components/ui/badge";
 const achievements = [
   {
     id: "1",
-    title: "NIT Kurukshetra Graduate",
-    description: "Computer Science Engineering",
+    title: "M.Sc. Mathematics Graduate",
+    description: "Shri Shivaji Education Society Science College",
     icon: GraduationCap,
     year: "2024",
   },
   {
     id: "2",
-    title: "Frontend Specialist",
-    description: "React.js & Modern Web Technologies",
+    title: "Full-Stack Developer",
+    description: "MERN Stack & Modern Web Technologies",
     icon: Code,
-    year: "2022",
+    year: "2024",
   },
   {
     id: "3",
-    title: "Project Portfolio",
-    description: "6+ Successful Web Applications",
+    title: "DSA Problem Solver",
+    description: "50+ Challenges Completed on LeetCode",
     icon: Award,
-    year: "2023",
+    year: "2024",
   },
 ];
 
 const interests = [
-  "Web Development",
-  "Open Source",
-  "UI/UX Design",
+  "Full-Stack Development",
+  "MERN Stack",
+  "Data Structures",
   "Problem Solving",
-  "Learning New Tech",
-  "Coding Challenges",
+  "Algorithm Design",
+  "Modern Web Technologies",
 ];
 
 const values = [
@@ -117,49 +117,52 @@ export const About: React.FC = () => {
                   <Heart size={24} className="text-white" />
                 </div>
                 <h2 className="font-display font-semibold text-2xl">
-                  My Story
+                  About Me
                 </h2>
               </div>
 
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Hello! I'm{" "}
-                  <span className="text-accent font-semibold">Aman Kumar</span>,
-                  a passionate Frontend Developer from India. My journey in web
-                  development began during my studies at{" "}
+                  <span className="text-accent font-semibold">Priya Maity</span>
+                  , an aspiring Full-Stack Developer from Nagpur, India. My
+                  journey in web development began with my passion for
+                  mathematics and evolved through
                   <span className="text-accent font-semibold">
-                    NIT Kurukshetra
+                    {" "}
+                    Geekster's Full-Stack Development Program
                   </span>
-                  , where I discovered my love for creating digital experiences
+                  , where I discovered my love for creating digital solutions
                   that solve real-world problems.
                 </p>
 
                 <p>
-                  What started as curiosity about how websites work has evolved
-                  into a deep passion for crafting user-centric web
-                  applications. I specialize in
+                  With a strong foundation in
                   <span className="text-accent font-semibold">
                     {" "}
-                    React.js, JavaScript, and modern web technologies
+                    JavaScript, React.js, Node.js, and MongoDB
                   </span>
-                  , always staying updated with the latest trends and best
-                  practices.
+                  , I have practical experience building real-world
+                  applications. My postgraduate background in Mathematics gives
+                  me a unique perspective on problem-solving and algorithmic
+                  thinking, which I've strengthened by completing 50+ DSA
+                  challenges on LeetCode.
                 </p>
 
                 <p>
-                  I believe in the power of clean, maintainable code and
-                  intuitive user interfaces. Every project I work on is an
-                  opportunity to learn something new and push the boundaries of
-                  what's possible on the web. When I'm not coding, you'll find
-                  me exploring new technologies, contributing to open source, or
-                  solving coding challenges.
+                  I believe in creating responsive, scalable, and user-friendly
+                  web applications. Every project I work on is an opportunity to
+                  apply my MERN stack knowledge and explore innovative
+                  solutions. When I'm not coding, you'll find me exploring new
+                  technologies, working on challenging algorithms, or building
+                  exciting new projects.
                 </p>
 
                 <p>
-                  My goal is to create web applications that not only look great
-                  but also provide exceptional user experiences. I'm always
-                  excited to collaborate with like-minded individuals and teams
-                  who share the same passion for innovation and quality.
+                  My goal is to contribute to dynamic teams and build impactful
+                  digital solutions that make a difference. I'm passionate about
+                  clean code, modern web technologies, and creating exceptional
+                  user experiences that truly matter to users.
                 </p>
               </div>
             </div>
@@ -175,22 +178,20 @@ export const About: React.FC = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <MapPin size={20} className="text-accent" />
-                <span className="text-muted-foreground">India</span>
+                <span className="text-muted-foreground">Nagpur, India</span>
               </div>
               <div className="flex items-center space-x-3">
                 <GraduationCap size={20} className="text-accent" />
-                <span className="text-muted-foreground">NIT Kurukshetra</span>
+                <span className="text-muted-foreground">M.Sc. Mathematics</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Calendar size={20} className="text-accent" />
-                <span className="text-muted-foreground">
-                  2+ Years Experience
-                </span>
+                <span className="text-muted-foreground">Fresh Graduate</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Code size={20} className="text-accent" />
                 <span className="text-muted-foreground">
-                  Frontend Developer
+                  Full-Stack Developer
                 </span>
               </div>
             </div>
