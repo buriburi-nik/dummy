@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/GlassCard";
 
 const titles = [
-  "Frontend Developer",
+  "Full-Stack Developer",
   "React.js Specialist",
-  "Web Development Expert",
-  "NIT Kurukshetra Graduate",
+  "MERN Stack Developer",
+  "Mathematics Graduate",
 ];
 
 export const Hero: React.FC = () => {
@@ -77,7 +77,7 @@ export const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Aman Kumar
+            Priya Maity
           </motion.h1>
         </motion.div>
 
@@ -104,10 +104,10 @@ export const Hero: React.FC = () => {
           variants={itemVariants}
           className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
         >
-          I'm a passionate Frontend Developer specializing in modern, scalable,
-          and high-performing web applications. With expertise in React.js,
-          JavaScript, and responsive design, I create digital experiences that
-          make a difference.
+          I'm an aspiring Full-Stack Developer with a strong foundation in
+          JavaScript, React.js, Node.js, and MongoDB. With practical experience
+          building real-world applications and 50+ DSA challenges completed, I
+          create responsive, scalable, and user-friendly digital solutions.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -152,7 +152,7 @@ export const Hero: React.FC = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.8 }}
                 >
-                  6+
+                  4+
                 </motion.div>
                 <p className="text-sm text-muted-foreground">Projects</p>
               </div>
@@ -164,9 +164,9 @@ export const Hero: React.FC = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.9 }}
                 >
-                  2+
+                  50+
                 </motion.div>
-                <p className="text-sm text-muted-foreground">Years Exp</p>
+                <p className="text-sm text-muted-foreground">DSA Solved</p>
               </div>
 
               <div className="space-y-2">
@@ -176,9 +176,9 @@ export const Hero: React.FC = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.0 }}
                 >
-                  NIT
+                  M.Sc
                 </motion.div>
-                <p className="text-sm text-muted-foreground">Graduate</p>
+                <p className="text-sm text-muted-foreground">Mathematics</p>
               </div>
             </div>
           </GlassCard>
@@ -190,10 +190,14 @@ export const Hero: React.FC = () => {
           className="flex justify-center space-x-6 pt-8"
         >
           {[
-            { icon: Github, href: "https://github.com", label: "GitHub" },
+            {
+              icon: Github,
+              href: "https://github.com/priyamaity",
+              label: "GitHub",
+            },
             {
               icon: ExternalLink,
-              href: "https://linkedin.com",
+              href: "https://linkedin.com/in/priya-maity",
               label: "LinkedIn",
             },
           ].map((link, index) => (
