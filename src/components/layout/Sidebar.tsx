@@ -106,16 +106,40 @@ export const Sidebar: React.FC<SidebarProps> = ({
     >
       <GlassCard
         variant="strong"
-        className="h-full m-4 p-6 flex flex-col justify-between"
+        className={cn(
+          "h-full m-4 flex flex-col justify-between bg-sidebar/95 backdrop-blur-xl border border-sidebar-border/50",
+          collapsed ? "p-3" : "p-6",
+        )}
         animated={false}
       >
         {/* Header */}
         <div className="space-y-8">
           {/* Logo/Brand */}
-          <div className="flex items-center justify-between">
+          <div
+            className={cn(
+              "flex items-center",
+              collapsed ? "justify-center" : "justify-between",
+            )}
+          >
             <AnimatePresence mode="wait">
-              {!collapsed && (
+              {collapsed ? (
                 <motion.div
+                  key="collapsed-logo"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center justify-center"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent via-neon-purple to-neon-cyan p-0.5">
+                    <div className="w-full h-full rounded-lg bg-sidebar flex items-center justify-center">
+                      <Code size={20} className="text-accent" />
+                    </div>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="expanded-logo"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
@@ -123,7 +147,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   className="flex items-center space-x-3"
                 >
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent via-neon-purple to-neon-cyan p-0.5">
-                    <div className="w-full h-full rounded-lg bg-background flex items-center justify-center">
+                    <div className="w-full h-full rounded-lg bg-sidebar flex items-center justify-center">
                       <Code size={20} className="text-accent" />
                     </div>
                   </div>
@@ -131,7 +155,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     <h1 className="font-display font-bold text-lg gradient-text">
                       Aman Kumar
                     </h1>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-sidebar-foreground/70">
                       Frontend Dev
                     </p>
                   </div>
@@ -139,21 +163,31 @@ export const Sidebar: React.FC<SidebarProps> = ({
               )}
             </AnimatePresence>
 
-            {onToggle && (
+            {onToggle && !collapsed && (
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={onToggle}
-                className="p-2 hover:bg-white/10"
+                className="hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors duration-200 p-2"
               >
-                {collapsed ? (
-                  <ChevronRight size={16} />
-                ) : (
-                  <ChevronLeft size={16} />
-                )}
+                <ChevronLeft size={16} />
               </Button>
             )}
           </div>
+
+          {/* Toggle button for collapsed state */}
+          {onToggle && collapsed && (
+            <div className="flex justify-center mt-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onToggle}
+                className="hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors duration-200 p-2"
+              >
+                <ChevronRight size={16} />
+              </Button>
+            </div>
+          )}
 
           {/* Navigation */}
           <nav className="space-y-2">
@@ -175,10 +209,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <Link
                     to={item.href}
                     className={cn(
-                      "group relative flex items-center space-x-3 px-3 py-3 rounded-xl transition-all duration-200",
-                      "hover:bg-white/10 hover:shadow-inner-glow",
+                      "group relative flex items-center transition-all duration-200",
+                      "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       active && "bg-accent/20 text-accent shadow-neon",
-                      collapsed && "justify-center px-2",
+                      collapsed
+                        ? "justify-center p-3 rounded-xl"
+                        : "space-x-3 px-3 py-3 rounded-xl",
                     )}
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
@@ -186,7 +222,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     <Icon
                       size={20}
                       className={cn(
-                        "transition-all duration-200",
+                        "transition-all duration-200 text-sidebar-foreground",
                         active && "text-accent",
                         hoveredItem === item.id && "scale-110",
                       )}
@@ -221,16 +257,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     )}
 
                     {/* Tooltip for collapsed state */}
-                    {collapsed && (
+                    {collapsed && hoveredItem === item.id && (
                       <motion.div
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{
-                          opacity: hoveredItem === item.id ? 1 : 0,
-                          x: hoveredItem === item.id ? 10 : 0,
+                        initial={{ opacity: 0, x: -10, scale: 0.8 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                        exit={{ opacity: 0, x: -10, scale: 0.8 }}
+                        className="fixed left-20 z-[60] px-3 py-2 bg-popover/95 backdrop-blur-sm text-popover-foreground text-sm rounded-lg shadow-lg border border-border whitespace-nowrap pointer-events-none"
+                        style={{
+                          top: `${index * 60 + 120}px`,
                         }}
-                        className="absolute left-full ml-2 px-2 py-1 bg-popover text-popover-foreground text-sm rounded-md shadow-lg border whitespace-nowrap pointer-events-none z-50"
                       >
                         {item.label}
+                        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-2 h-2 bg-popover/95 border-l border-t border-border rotate-45" />
                       </motion.div>
                     )}
                   </Link>
@@ -264,13 +302,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 rounded-lg hover:bg-white/10 transition-colors duration-200 group"
+                        className="p-2 rounded-lg hover:bg-sidebar-accent transition-colors duration-200 group"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
                         <Icon
                           size={16}
-                          className="text-muted-foreground group-hover:text-accent transition-colors duration-200"
+                          className="text-sidebar-foreground group-hover:text-accent transition-colors duration-200"
                         />
                       </motion.a>
                     );
@@ -303,14 +341,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-2 hover:bg-white/10"
+                  className="p-2 hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors duration-200"
                 >
                   <ThemeIcon size={16} />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                align="start"
-                className="glass border-white/20"
+                align={collapsed ? "start" : "start"}
+                side={collapsed ? "right" : "top"}
+                className="glass border-sidebar-border/50 bg-sidebar/95 backdrop-blur-xl"
               >
                 <DropdownMenuItem onClick={() => setTheme("light")}>
                   <Sun className="mr-2 h-4 w-4" />
