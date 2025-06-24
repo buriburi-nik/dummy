@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sidebar } from "./Sidebar";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,22 +10,14 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
 
   // Handle responsive behavior
   useEffect(() => {
-    const checkMobile = () => {
-      const mobile = window.innerWidth < 1024; // lg breakpoint
-      setIsMobile(mobile);
-      if (mobile) {
-        setSidebarCollapsed(true);
-      }
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+    if (isMobile) {
+      setSidebarCollapsed(true);
+    }
+  }, [isMobile]);
 
   // Page transition variants
   const pageVariants = {
@@ -86,20 +79,26 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Sidebar
         collapsed={sidebarCollapsed}
         onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+        isMobile={isMobile}
       />
 
       {/* Main content */}
       <motion.main
         className={cn(
           "relative z-10 min-h-screen transition-all duration-300",
-          sidebarCollapsed ? "ml-28" : "ml-80",
-          isMobile && "ml-28",
+          !isMobile && (sidebarCollapsed ? "ml-28" : "ml-80"),
+          isMobile && "mb-20", // Add bottom margin for horizontal mobile sidebar
         )}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="container max-w-6xl mx-auto px-6 py-8">
+        <div
+          className={cn(
+            "container max-w-6xl mx-auto px-6 py-8",
+            isMobile && "pb-24", // Extra padding bottom on mobile for sidebar space
+          )}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
