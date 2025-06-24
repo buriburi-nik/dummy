@@ -87,7 +87,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         className={cn(
           "relative z-10 min-h-screen transition-all duration-300",
           !isMobile && (sidebarCollapsed ? "ml-28" : "ml-80"),
-          isMobile && "mb-20", // Add bottom margin for horizontal mobile sidebar
+          isMobile && "mt-20", // Add top margin for horizontal mobile sidebar
         )}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -96,7 +96,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div
           className={cn(
             "container max-w-6xl mx-auto px-6 py-8",
-            isMobile && "pb-24", // Extra padding bottom on mobile for sidebar space
+            isMobile && "pt-24", // Extra padding top on mobile for sidebar space
           )}
         >
           <AnimatePresence mode="wait">
