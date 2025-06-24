@@ -66,11 +66,13 @@ const socialLinks = [
 interface SidebarProps {
   collapsed?: boolean;
   onToggle?: () => void;
+  isMobile?: boolean;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   collapsed = false,
   onToggle,
+  isMobile = false,
 }) => {
   const { theme, setTheme, actualTheme } = useTheme();
   const location = useLocation();
@@ -91,20 +93,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <motion.aside
-      initial={{ x: -100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
+      initial={isMobile ? { y: 100, opacity: 0 } : { x: -100, opacity: 0 }}
+      animate={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "fixed left-0 top-0 h-[90vh] z-50 transition-all duration-300",
-        collapsed ? "w-20" : "w-72",
+        "fixed z-50 transition-all duration-300",
+        isMobile
+          ? "bottom-0 left-0 right-0 h-20 w-full"
+          : "left-0 top-0 h-[90vh]",
+        !isMobile && (collapsed ? "w-20" : "w-72"),
       )}
     >
       <div
         className={cn(
-          "h-full m-4 flex flex-col justify-between rounded-xl transition-all duration-300 shadow-2xl",
-          collapsed
-            ? "bg-slate-800/95 border border-slate-700 p-3"
-            : "bg-sidebar border border-sidebar-border p-6",
+          "transition-all duration-300 shadow-2xl",
+          isMobile
+            ? "h-full mx-4 mb-4 flex flex-row justify-between items-center rounded-xl bg-slate-800/95 border border-slate-700 px-6 py-3"
+            : "h-full m-4 flex flex-col justify-between rounded-xl",
+          !isMobile &&
+            (collapsed
+              ? "bg-slate-800/95 border border-slate-700 p-3"
+              : "bg-sidebar border border-sidebar-border p-6"),
         )}
       >
         {/* Header */}
