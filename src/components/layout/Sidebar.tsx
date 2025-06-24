@@ -106,9 +106,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
     >
       <div
         className={cn(
-          "h-full m-4 flex flex-col justify-between rounded-xl transition-all duration-300",
-          "bg-sidebar border border-sidebar-border shadow-2xl",
-          collapsed ? "p-3" : "p-6",
+          "h-full m-4 flex flex-col justify-between rounded-xl transition-all duration-300 shadow-2xl",
+          collapsed
+            ? "bg-slate-800/95 border border-slate-700 p-3"
+            : "bg-sidebar border border-sidebar-border p-6",
         )}
       >
         {/* Header */}
@@ -181,9 +182,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 variant="ghost"
                 size="sm"
                 onClick={onToggle}
-                className="hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors duration-200 p-2 w-12 h-12 rounded-xl"
+                className="hover:bg-accent/20 text-white hover:text-white transition-colors duration-200 p-2 w-12 h-12 rounded-xl border border-white/20"
               >
-                <ChevronRight size={18} className="text-sidebar-foreground" />
+                <ChevronRight size={18} className="text-white" />
               </Button>
             </div>
           )}
@@ -209,11 +210,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     to={item.href}
                     className={cn(
                       "group relative flex items-center transition-all duration-200",
-                      "hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground",
-                      active && "bg-accent text-accent-foreground shadow-lg",
                       collapsed
-                        ? "justify-center p-3 rounded-xl w-12 h-12 mx-auto"
-                        : "space-x-3 px-3 py-3 rounded-xl",
+                        ? "justify-center p-3 rounded-xl w-12 h-12 mx-auto hover:bg-white/10 border border-white/10 hover:border-white/30"
+                        : "space-x-3 px-3 py-3 rounded-xl hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground",
+                      active &&
+                        (collapsed
+                          ? "bg-accent border-accent"
+                          : "bg-accent text-accent-foreground shadow-lg"),
                     )}
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
@@ -223,8 +226,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       className={cn(
                         "transition-all duration-200",
                         active
-                          ? "text-accent-foreground"
-                          : "text-sidebar-foreground",
+                          ? "text-white"
+                          : collapsed
+                            ? "text-white"
+                            : "text-sidebar-foreground",
                         hoveredItem === item.id && "scale-110",
                       )}
                     />
@@ -350,13 +355,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   variant="ghost"
                   size="sm"
                   className={cn(
-                    "hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors duration-200",
-                    collapsed ? "p-2 w-12 h-12 rounded-xl" : "p-2",
+                    "hover:bg-accent/20 transition-colors duration-200",
+                    collapsed
+                      ? "p-2 w-12 h-12 rounded-xl border border-white/20 text-white hover:text-white"
+                      : "p-2 text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent",
                   )}
                 >
                   <ThemeIcon
                     size={collapsed ? 18 : 16}
-                    className="text-sidebar-foreground"
+                    className={
+                      collapsed ? "text-white" : "text-sidebar-foreground"
+                    }
                   />
                 </Button>
               </DropdownMenuTrigger>
