@@ -211,23 +211,20 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     className={cn(
                       "group relative flex items-center transition-all duration-200",
                       collapsed
-                        ? "justify-center p-3 rounded-xl w-12 h-12 mx-auto bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40"
+                        ? "justify-center p-3 rounded-lg w-11 h-11 mx-auto bg-white/10 hover:bg-white/20"
                         : "space-x-3 px-3 py-3 rounded-xl hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground",
                       active &&
                         (collapsed
-                          ? "bg-accent/90 border-accent text-white"
+                          ? "bg-accent text-white"
                           : "bg-accent text-accent-foreground shadow-lg"),
                     )}
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <Icon
-                      size={collapsed ? 20 : 20}
-                      className={cn(
-                        "transition-all duration-200 text-white",
-                        active && "text-white",
-                        hoveredItem === item.id && "scale-110",
-                      )}
+                      size={20}
+                      className="text-white opacity-90 hover:opacity-100 transition-opacity duration-200"
+                      style={{ display: "block" }}
                     />
 
                     <AnimatePresence mode="wait">
