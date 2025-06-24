@@ -7,6 +7,10 @@ import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Layout } from "@/components/layout/Layout";
 import Index from "./pages/Index";
+import AboutPage from "./pages/AboutPage";
+import ProjectsPage from "./pages/ProjectsPage";
+import SkillsPage from "./pages/SkillsPage";
+import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,47 +23,10 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Index />} />
-        {/* Placeholder routes for other pages */}
-        <Route
-          path="/about"
-          element={
-            <div className="min-h-screen flex items-center justify-center">
-              <h1 className="text-4xl font-bold gradient-text">
-                About Page - Coming Soon
-              </h1>
-            </div>
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <div className="min-h-screen flex items-center justify-center">
-              <h1 className="text-4xl font-bold gradient-text">
-                Projects Page - Coming Soon
-              </h1>
-            </div>
-          }
-        />
-        <Route
-          path="/skills"
-          element={
-            <div className="min-h-screen flex items-center justify-center">
-              <h1 className="text-4xl font-bold gradient-text">
-                Skills Page - Coming Soon
-              </h1>
-            </div>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <div className="min-h-screen flex items-center justify-center">
-              <h1 className="text-4xl font-bold gradient-text">
-                Contact Page - Coming Soon
-              </h1>
-            </div>
-          }
-        />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/skills" element={<SkillsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
