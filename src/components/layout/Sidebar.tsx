@@ -132,7 +132,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   className="flex items-center justify-center"
                 >
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
-                    <div className="w-full h-full rounded-lg bg-sidebar flex items-center justify-center">
+                    <div className="w-full h-full rounded-lg bg-slate-800 flex items-center justify-center">
                       <Code size={20} className="text-accent" />
                     </div>
                   </div>
@@ -190,7 +190,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           )}
 
           {/* Navigation */}
-          <nav className={cn("space-y-2", collapsed && "space-y-4")}>
+          <nav className={cn("space-y-2", collapsed && "space-y-3")}>
             {navigation.map((item, index) => {
               const Icon = item.icon;
               const active = isActive(item.href);
@@ -211,25 +211,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     className={cn(
                       "group relative flex items-center transition-all duration-200",
                       collapsed
-                        ? "justify-center p-3 rounded-xl w-12 h-12 mx-auto hover:bg-white/10 border border-white/10 hover:border-white/30"
+                        ? "justify-center p-3 rounded-xl w-12 h-12 mx-auto bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40"
                         : "space-x-3 px-3 py-3 rounded-xl hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground",
                       active &&
                         (collapsed
-                          ? "bg-accent border-accent"
+                          ? "bg-accent/90 border-accent text-white"
                           : "bg-accent text-accent-foreground shadow-lg"),
                     )}
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <Icon
-                      size={collapsed ? 22 : 20}
+                      size={collapsed ? 20 : 20}
                       className={cn(
-                        "transition-all duration-200",
-                        active
-                          ? "text-white"
-                          : collapsed
-                            ? "text-white"
-                            : "text-sidebar-foreground",
+                        "transition-all duration-200 text-white",
+                        active && "text-white",
                         hoveredItem === item.id && "scale-110",
                       )}
                     />
