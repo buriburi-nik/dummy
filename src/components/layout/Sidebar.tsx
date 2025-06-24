@@ -20,12 +20,7 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "@/contexts/ThemeContext";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { useLocation, Link } from "react-router-dom";
 
 interface NavItem {
@@ -346,45 +341,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </motion.p>
             )}
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className={cn(
-                    "hover:bg-accent/20 transition-colors duration-200",
-                    collapsed
-                      ? "p-2 w-10 h-10 rounded-lg border border-white/20 text-white hover:text-white"
-                      : "p-2 text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent",
-                  )}
-                >
-                  <ThemeIcon
-                    size={collapsed ? 16 : 16}
-                    className={
-                      collapsed ? "text-white" : "text-sidebar-foreground"
-                    }
-                  />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align={collapsed ? "start" : "start"}
-                side={collapsed ? "right" : "top"}
-                className="glass border-sidebar-border/50 bg-sidebar/95 backdrop-blur-xl"
-              >
-                <DropdownMenuItem onClick={() => setTheme("light")}>
-                  <Sun className="mr-2 h-4 w-4" />
-                  Light
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
-                  <Moon className="mr-2 h-4 w-4" />
-                  Dark
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
-                  <Monitor className="mr-2 h-4 w-4" />
-                  System
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() =>
+                setTheme(actualTheme === "light" ? "dark" : "light")
+              }
+              className={cn(
+                "hover:bg-accent/20 transition-colors duration-200",
+                collapsed
+                  ? "p-2 w-10 h-10 rounded-lg border border-white/20 text-white hover:text-white"
+                  : "p-2 text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent",
+              )}
+            >
+              <ThemeIcon
+                size={collapsed ? 16 : 16}
+                className={collapsed ? "text-white" : "text-sidebar-foreground"}
+              />
+            </Button>
           </div>
         </div>
       </div>
