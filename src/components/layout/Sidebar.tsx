@@ -209,21 +209,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <Link
                     to={item.href}
                     className={cn(
-                      "group relative flex items-center justify-center transition-all duration-200",
+                      "group relative flex items-center transition-all duration-200",
                       collapsed
-                        ? "p-2 rounded-lg w-10 h-10 mx-auto bg-white/10 hover:bg-white/20"
+                        ? "p-2 rounded-lg w-10 h-10 mx-auto bg-white/10 hover:bg-white/20 justify-center"
                         : "space-x-3 px-3 py-3 rounded-xl hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground",
                       active &&
                         (collapsed
                           ? "bg-accent text-white"
-                          : "bg-accent text-accent-foreground shadow-lg"),
+                          : "bg-accent text-white shadow-lg"),
                     )}
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <Icon
                       size={collapsed ? 18 : 20}
-                      className="text-white opacity-90 hover:opacity-100 transition-opacity duration-200"
+                      className={cn(
+                        "transition-opacity duration-200",
+                        active
+                          ? "text-white opacity-100"
+                          : "text-white opacity-90 hover:opacity-100",
+                      )}
                     />
 
                     <AnimatePresence mode="wait">
@@ -235,7 +240,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           transition={{ duration: 0.2 }}
                           className={cn(
                             "font-medium text-sm transition-colors duration-200",
-                            active && "text-accent",
+                            active ? "text-white" : "text-sidebar-foreground",
                           )}
                         >
                           {item.label}
