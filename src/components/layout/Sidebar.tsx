@@ -182,15 +182,20 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 variant="ghost"
                 size="sm"
                 onClick={onToggle}
-                className="hover:bg-accent/20 text-white hover:text-white transition-colors duration-200 p-2 w-12 h-12 rounded-xl border border-white/20"
+                className="hover:bg-accent/20 text-white hover:text-white transition-colors duration-200 p-2 w-10 h-10 rounded-lg border border-white/20"
               >
-                <ChevronRight size={18} className="text-white" />
+                <ChevronRight size={16} className="text-white" />
               </Button>
             </div>
           )}
 
           {/* Navigation */}
-          <nav className={cn("space-y-2", collapsed && "space-y-3")}>
+          <nav
+            className={cn(
+              "space-y-2",
+              collapsed && "space-y-2 flex flex-col items-center",
+            )}
+          >
             {navigation.map((item, index) => {
               const Icon = item.icon;
               const active = isActive(item.href);
@@ -209,9 +214,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <Link
                     to={item.href}
                     className={cn(
-                      "group relative flex items-center transition-all duration-200",
+                      "group relative flex items-center justify-center transition-all duration-200",
                       collapsed
-                        ? "justify-center p-3 rounded-lg w-11 h-11 mx-auto bg-white/10 hover:bg-white/20"
+                        ? "p-2 rounded-lg w-10 h-10 mx-auto bg-white/10 hover:bg-white/20"
                         : "space-x-3 px-3 py-3 rounded-xl hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground",
                       active &&
                         (collapsed
@@ -222,9 +227,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <Icon
-                      size={20}
+                      size={collapsed ? 18 : 20}
                       className="text-white opacity-90 hover:opacity-100 transition-opacity duration-200"
-                      style={{ display: "block" }}
                     />
 
                     <AnimatePresence mode="wait">
@@ -350,12 +354,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   className={cn(
                     "hover:bg-accent/20 transition-colors duration-200",
                     collapsed
-                      ? "p-2 w-12 h-12 rounded-xl border border-white/20 text-white hover:text-white"
+                      ? "p-2 w-10 h-10 rounded-lg border border-white/20 text-white hover:text-white"
                       : "p-2 text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent",
                   )}
                 >
                   <ThemeIcon
-                    size={collapsed ? 18 : 16}
+                    size={collapsed ? 16 : 16}
                     className={
                       collapsed ? "text-white" : "text-sidebar-foreground"
                     }
