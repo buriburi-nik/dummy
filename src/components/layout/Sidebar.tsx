@@ -94,12 +94,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
   // Mobile horizontal sidebar
   if (isMobile) {
     return (
-      <motion.aside
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 h-20 w-full z-50"
-      >
+     <motion.aside
+  initial={{ y: -100, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.6, ease: "easeOut" }}
+  className="fixed top-4 left-1/2 transform -translate-x-1/2 h-20 w-[90%] max-w-md z-50"
+>
         <div className="h-full mx-4 mt-4 flex flex-row justify-between items-center rounded-xl bg-slate-800/95 border border-slate-700 px-6 py-3 shadow-2xl">
           {/* Logo */}
           <div className="flex items-center">
