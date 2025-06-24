@@ -23,21 +23,21 @@ const contactMethods = [
   {
     icon: Mail,
     title: "Email",
-    value: "aman.kumar@example.com",
-    href: "mailto:aman.kumar@example.com",
+    value: "priyamaity072@gmail.com",
+    href: "mailto:priyamaity072@gmail.com",
     description: "Best for project inquiries",
   },
   {
     icon: Phone,
     title: "Phone",
-    value: "+91 99999 99999",
-    href: "tel:+919999999999",
+    value: "+91 7066243944",
+    href: "tel:+917066243944",
     description: "Available during business hours",
   },
   {
     icon: MapPin,
     title: "Location",
-    value: "India",
+    value: "Nagpur, India",
     description: "Open to remote opportunities",
   },
 ];
@@ -46,22 +46,22 @@ const socialLinks = [
   {
     icon: Github,
     title: "GitHub",
-    value: "@amankumar",
-    href: "https://github.com/amankumar",
+    value: "@priyamaity",
+    href: "https://github.com/priyamaity",
     color: "hover:text-gray-400",
   },
   {
     icon: Linkedin,
     title: "LinkedIn",
-    value: "Aman Kumar",
-    href: "https://linkedin.com/in/aman-kumar",
+    value: "Priya Maity",
+    href: "https://linkedin.com/in/priya-maity",
     color: "hover:text-blue-400",
   },
   {
     icon: Twitter,
     title: "Twitter",
-    value: "@amankumar_dev",
-    href: "https://twitter.com/amankumar_dev",
+    value: "@priyamaity_dev",
+    href: "https://twitter.com/priyamaity_dev",
     color: "hover:text-blue-400",
   },
 ];
@@ -372,7 +372,7 @@ export const Contact: React.FC = () => {
               <Button
                 variant="outline"
                 className="w-full justify-start"
-                onClick={() => window.open("mailto:aman.kumar@example.com")}
+                onClick={() => window.open("mailto:priyamaity072@gmail.com")}
               >
                 <Mail size={18} className="mr-2" />
                 Send Email
@@ -380,7 +380,7 @@ export const Contact: React.FC = () => {
               <Button
                 variant="outline"
                 className="w-full justify-start"
-                onClick={() => window.open("https://calendly.com/amankumar")}
+                onClick={() => window.open("https://calendly.com/priyamaity")}
               >
                 <Calendar size={18} className="mr-2" />
                 Schedule Call
