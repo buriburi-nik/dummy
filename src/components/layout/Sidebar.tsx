@@ -110,96 +110,158 @@ export const Sidebar: React.FC<SidebarProps> = ({
           isMobile
             ? "h-full mx-4 mb-4 flex flex-row justify-between items-center rounded-xl bg-slate-800/95 border border-slate-700 px-6 py-3"
             : "h-full m-4 flex flex-col justify-between rounded-xl",
-          !isMobile &&
-            (collapsed
-              ? "bg-slate-800/95 border border-slate-700 p-3"
-              : "bg-sidebar border border-sidebar-border p-6"),
+          !isMobile && (collapsed
+            ? "bg-slate-800/95 border border-slate-700 p-3"
+            : "bg-sidebar border border-sidebar-border p-6"),
         )}
       >
-        {/* Header */}
-        <div className="space-y-8">
-          {/* Logo/Brand */}
-          <div
-            className={cn(
-              "flex items-center",
-              collapsed ? "justify-center" : "justify-between",
-            )}
-          >
-            <AnimatePresence mode="wait">
-              {collapsed ? (
-                <motion.div
-                  key="collapsed-logo"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-center justify-center"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
-                    <div className="w-full h-full rounded-lg bg-slate-800 flex items-center justify-center">
-                      <Code size={20} className="text-accent" />
-                    </div>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="expanded-logo"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-center space-x-3"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
-                    <div className="w-full h-full rounded-lg bg-sidebar flex items-center justify-center">
-                      <Code size={20} className="text-accent" />
-                    </div>
-                  </div>
-                  <div>
-                    <h1 className="font-display font-bold text-lg gradient-text">
-                      Aman Kumar
-                    </h1>
-                    <p className="text-xs text-sidebar-foreground/70">
-                      Frontend Dev
-                    </p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+        {/* Mobile Layout */}
+        {isMobile ? (
+          <>
+            {/* Logo */}
+            <div className="flex items-center">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
+                <div className="w-full h-full rounded-md bg-slate-800 flex items-center justify-center">
+                  <Code size={16} className="text-accent" />
+                </div>
+              </div>
+            </div>
 
-            {onToggle && !collapsed && (
+            {/* Mobile Navigation */}
+            <nav className="flex-1 flex justify-center">
+              <div className="flex space-x-1">
+                {navigation.map((item, index) => {
+                  const Icon = item.icon;
+                  const active = isActive(item.href);
+
+                  return (
+                    <Link
+                      key={item.id}
+                      to={item.href}
+                      className={cn(
+                        "relative flex items-center justify-center p-2 rounded-lg transition-all duration-200",
+                        active
+                          ? "bg-accent text-white"
+                          : "bg-white/10 hover:bg-white/20 text-white"
+                      )}
+                    >
+                      <Icon size={20} className="text-white" />
+                      {active && (
+                        <motion.div
+                          layoutId="activeMobileIndicator"
+                          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
+                        />
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+            </nav>
+
+            {/* Theme Toggle */}
+            <div className="flex items-center">
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={onToggle}
-                className="hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors duration-200 p-2"
+                onClick={() =>
+                  setTheme(actualTheme === "light" ? "dark" : "light")
+                }
+                className="p-2 w-8 h-8 rounded-lg text-white hover:text-white hover:bg-white/20 transition-colors duration-200"
               >
-                <ChevronLeft size={16} />
-              </Button>
-            )}
-          </div>
-
-          {/* Toggle button for collapsed state */}
-          {onToggle && collapsed && (
-            <div className="flex justify-center mt-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onToggle}
-                className="hover:bg-accent/20 text-white hover:text-white transition-colors duration-200 p-2 w-10 h-10 rounded-lg border border-white/20"
-              >
-                <ChevronRight size={16} className="text-white" />
+                <ThemeIcon size={16} className="text-white" />
               </Button>
             </div>
-          )}
+          </>
+        ) : (
+          /* Desktop Layout */
+          <>
+            {/* Header */}
+            <div className="space-y-8">
+              {/* Logo/Brand */}
+              <div
+                className={cn(
+                  "flex items-center",
+                  collapsed ? "justify-center" : "justify-between",
+                )}
+              >
+                <AnimatePresence mode="wait">
+                  {collapsed ? (
+                    <motion.div
+                      key="collapsed-logo"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex items-center justify-center"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
+                        <div className="w-full h-full rounded-lg bg-slate-800 flex items-center justify-center">
+                          <Code size={20} className="text-accent" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="expanded-logo"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex items-center space-x-3"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
+                        <div className="w-full h-full rounded-lg bg-sidebar flex items-center justify-center">
+                          <Code size={20} className="text-accent" />
+                        </div>
+                      </div>
+                      <div>
+                        <h1 className="font-display font-bold text-lg gradient-text">
+                          Priya Maity
+                        </h1>
+                        <p className="text-xs text-sidebar-foreground/70">
+                          Full-Stack Dev
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-          {/* Navigation */}
-          <nav
-            className={cn(
-              "space-y-2",
-              collapsed && "space-y-2 flex flex-col items-center",
-            )}
-          >
+                {onToggle && !collapsed && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={onToggle}
+                    className="hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors duration-200 p-2"
+                  >
+                    <ChevronLeft size={16} />
+                  </Button>
+                )}
+              </div>
+
+              {/* Toggle button for collapsed state */}
+              {onToggle && collapsed && (
+                <div className="flex justify-center mt-4">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={onToggle}
+                    className="hover:bg-accent/20 text-white hover:text-white transition-colors duration-200 p-2 w-10 h-10 rounded-lg border border-white/20"
+                  >
+                    <ChevronRight size={16} className="text-white" />
+                  </Button>
+                </div>
+              )}
+
+              {/* Navigation */}
+              <nav
+                className={cn(
+                  "space-y-2",
+                  collapsed && "space-y-2 flex flex-col items-center",
+                )}
+              >
             {navigation.map((item, index) => {
               const Icon = item.icon;
               const active = isActive(item.href);
@@ -215,7 +277,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     ease: "easeOut",
                   }}
                 >
-                  <Link
+                    <Link
                     to={item.href}
                     className={cn(
                       "group relative flex items-center transition-all duration-200",
@@ -234,9 +296,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       size={collapsed ? 18 : 20}
                       className={cn(
                         "transition-opacity duration-200",
-                        active
-                          ? "text-white opacity-100"
-                          : "text-white opacity-90 hover:opacity-100",
+                        active ? "text-white opacity-100" : "text-white opacity-90 hover:opacity-100"
                       )}
                     />
 
