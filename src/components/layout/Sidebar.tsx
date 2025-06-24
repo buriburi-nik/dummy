@@ -1,4 +1,4 @@
- import React, { useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Home,
@@ -346,7 +346,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         exit={{ opacity: 0, x: -10, scale: 0.8 }}
                         className="fixed left-20 z-[60] px-3 py-2 bg-popover/95 backdrop-blur-sm text-popover-foreground text-sm rounded-lg shadow-lg border border-border whitespace-nowrap pointer-events-none"
                         style={{
-                          top: ${index * 60 + 120}px,
+                          top: `${index * 60 + 120}px`,
                         }}
                       >
                         {item.label}
@@ -444,5 +444,3 @@ export const Sidebar: React.FC<SidebarProps> = ({
     </motion.aside>
   );
 };
-
-
