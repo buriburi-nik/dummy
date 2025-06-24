@@ -101,7 +101,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   className="fixed top-0 left-20 right-20 h-20 w-full z-50"
 
 >
-        <div className="h-full mx-4 mt-4 flex flex-row justify-between items-center rounded-xl bg-slate-800/95 border border-slate-700 px-6 py-3 shadow-2xl">
+        <div className="h-full mx-4 mt-2 flex flex-row justify-between items-center rounded-xl bg-slate-800/95 border border-slate-700 px-6 py-3 shadow-2xl">
           {/* Logo */}
           <div className="flex items-center">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
