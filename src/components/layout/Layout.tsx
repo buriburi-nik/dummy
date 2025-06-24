@@ -96,7 +96,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div
           className={cn(
             "container max-w-6xl mx-auto px-6 py-8",
-            isMobile && "pt-24", // Extra padding top on mobile for sidebar space
+            isMobile && "pt-4", // Minimal padding top on mobile
           )}
         >
           <AnimatePresence mode="wait">
