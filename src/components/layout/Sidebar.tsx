@@ -100,7 +100,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "fixed left-0 top-0 h-[80vh] z-50 transition-all duration-300",
+        "fixed left-0 top-0 h-[90vh] z-50 transition-all duration-300",
         collapsed ? "w-20" : "w-72",
       )}
     >
