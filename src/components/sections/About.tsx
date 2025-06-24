@@ -117,7 +117,7 @@ export const About: React.FC = () => {
                   <Heart size={24} className="text-white" />
                 </div>
                 <h2 className="font-display font-semibold text-2xl">
-                  My Story
+                  About Me
                 </h2>
               </div>
 
