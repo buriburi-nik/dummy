@@ -129,10 +129,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </div>
                   <div>
                     <h1 className="font-display font-bold text-lg gradient-text">
-                      Portfolio
+                      Aman Kumar
                     </h1>
                     <p className="text-xs text-muted-foreground">
-                      Full-Stack Dev
+                      Frontend Dev
                     </p>
                   </div>
                 </motion.div>
