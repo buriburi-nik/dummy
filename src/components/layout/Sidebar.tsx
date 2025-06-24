@@ -92,75 +92,65 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const ThemeIcon = themeIcons[theme];
 
   // Mobile horizontal sidebar
+ // Mobile Sidebar (Centered)
   if (isMobile) {
     return (
       <motion.aside
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 h-20 w-full z-50"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
       >
-        <div className="h-full mx-4 mt-4 flex flex-row justify-between items-center rounded-xl bg-slate-800/95 border border-slate-700 px-6 py-3 shadow-2xl">
-          {/* Logo */}
-          <div className="flex items-center">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
+        <div className="w-[90%] max-w-md rounded-2xl bg-slate-800/95 border border-slate-700 px-6 py-4 shadow-2xl">
+          <div className="flex flex-col space-y-6 items-center">
+            {/* Logo */}
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-accent via-purple-500 to-cyan-500 p-0.5 shadow-lg">
               <div className="w-full h-full rounded-md bg-slate-800 flex items-center justify-center">
-                <Code size={16} className="text-accent" />
+                <Code size={20} className="text-accent" />
               </div>
             </div>
-          </div>
 
-          {/* Mobile Navigation */}
-          <nav className="flex-1 flex justify-center">
-            <div className="flex space-x-1">
-              {navigation.map((item, index) => {
+            {/* Navigation */}
+            <nav className="flex flex-col space-y-3 w-full items-center">
+              {navigation.map((item) => {
                 const Icon = item.icon;
                 const active = isActive(item.href);
-
                 return (
                   <Link
                     key={item.id}
                     to={item.href}
                     className={cn(
-                      "relative flex items-center justify-center p-2 rounded-lg transition-all duration-200",
+                      "flex items-center justify-center w-full py-2 rounded-xl transition-all duration-200",
                       active
                         ? "bg-accent text-white"
-                        : "bg-white/10 hover:bg-white/20 text-white",
+                        : "bg-white/10 hover:bg-white/20 text-white"
                     )}
                   >
-                    <Icon size={20} className="text-white" />
-                    {active && (
-                      <motion.div
-                        layoutId="activeMobileIndicator"
-                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                      />
-                    )}
+                    <Icon size={20} className="mr-2" />
+                    <span>{item.label}</span>
                   </Link>
                 );
               })}
-            </div>
-          </nav>
+            </nav>
 
-          {/* Theme Toggle */}
-          <div className="flex items-center">
+            {/* Theme Toggle */}
             <Button
               variant="ghost"
               size="sm"
               onClick={() =>
                 setTheme(actualTheme === "light" ? "dark" : "light")
               }
-              className="p-2 w-8 h-8 rounded-lg text-white hover:text-white hover:bg-white/20 transition-colors duration-200"
+              className="p-2 w-10 h-10 rounded-lg text-white hover:text-white hover:bg-white/20 transition-colors duration-200"
             >
-              <ThemeIcon size={16} className="text-white" />
+              <ThemeIcon size={16} />
             </Button>
           </div>
         </div>
       </motion.aside>
     );
   }
+
 
   // Desktop vertical sidebar
   return (
