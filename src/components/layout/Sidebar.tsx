@@ -261,8 +261,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Navigation */}
           <nav
             className={cn(
-              "space-y-2",
-              collapsed && "space-y-2 flex flex-col items-center",
+              "space-y-3 px-2",
+              collapsed && "space-y-3 flex flex-col items-center px-0",
             )}
           >
             {navigation.map((item, index) => {
