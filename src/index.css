@@ -44,12 +44,12 @@
 
     /* Sidebar colors - Light mode */
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5% 26%;
+    --sidebar-foreground: 240 6% 10%;
     --sidebar-primary: 240 6% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent: 240 5% 90%;
     --sidebar-accent-foreground: 240 6% 10%;
-    --sidebar-border: 220 13% 91%;
+    --sidebar-border: 220 13% 85%;
     --sidebar-ring: 217 91% 60%;
 
     /* Premium portfolio colors - Light mode */
@@ -96,13 +96,13 @@
     --ring: 213 27% 84%;
 
     /* Sidebar colors - Dark mode */
-    --sidebar-background: 240 6% 10%;
-    --sidebar-foreground: 240 5% 96%;
+    --sidebar-background: 240 6% 12%;
+    --sidebar-foreground: 240 5% 90%;
     --sidebar-primary: 224 76% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent: 240 4% 20%;
     --sidebar-accent-foreground: 240 5% 96%;
-    --sidebar-border: 240 4% 16%;
+    --sidebar-border: 240 4% 20%;
     --sidebar-ring: 217 91% 60%;
 
     /* Premium portfolio colors - Dark mode */

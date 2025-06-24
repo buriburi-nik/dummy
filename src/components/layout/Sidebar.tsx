@@ -107,7 +107,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div
         className={cn(
           "h-full m-4 flex flex-col justify-between rounded-xl transition-all duration-300",
-          "bg-sidebar/98 backdrop-blur-xl border border-sidebar-border shadow-2xl",
+          "bg-sidebar border border-sidebar-border shadow-2xl",
           collapsed ? "p-3" : "p-6",
         )}
       >
@@ -189,7 +189,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           )}
 
           {/* Navigation */}
-          <nav className="space-y-2">
+          <nav className={cn("space-y-2", collapsed && "space-y-4")}>
             {navigation.map((item, index) => {
               const Icon = item.icon;
               const active = isActive(item.href);
@@ -285,7 +285,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="space-y-6">
+        <div className={cn("space-y-6", collapsed && "space-y-4")}>
           {/* Social Links */}
           <AnimatePresence mode="wait">
             {!collapsed && (
@@ -328,7 +328,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <div
             className={cn(
               "flex",
-              collapsed ? "justify-center" : "justify-between items-center",
+              collapsed
+                ? "justify-center mt-4"
+                : "justify-between items-center",
             )}
           >
             {!collapsed && (
